@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    /* Edited out for use in UI script
 	//health
-	public int health = 200;
+	public int health = 200; 
+    
 
 	public GameObject deathEffect;
+    */
 
-	private Rigidbody2D rb;
+    private Rigidbody2D rb;
 	private Animator anim;
 
 	// character controller input
@@ -35,7 +38,6 @@ public class PlayerController : MonoBehaviour
 	public float climbspeed;
 	public LayerMask ladderrecog;
 	public bool isClimbing;
-
 
 
 	bool airborne;
@@ -96,6 +98,14 @@ public class PlayerController : MonoBehaviour
 		{
 			anim.SetBool("isJumping", true);
 		}
+
+        if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        {
+            anim.SetBool("isCrouching", true);
+        } else
+        {
+            anim.SetBool("isCrouching", false);
+        }
 
 		anim.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
 
@@ -193,6 +203,7 @@ public class PlayerController : MonoBehaviour
 		Instantiate(Projectile1, firePointLeft.position, firePointLeft.rotation);
 	}
 
+    /* Edited out for use in UI script
 	//damage variable
 	public void TakeDamage(int damage)
 	{
@@ -211,4 +222,5 @@ public class PlayerController : MonoBehaviour
 		Destroy(gameObject);
 		Debug.Log("Die");
 	}
+    */
 }
