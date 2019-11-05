@@ -5,6 +5,7 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
 	private Transform destination;
+    private string ObjectTag;
 
 	public bool isOrange;
 	public float distance = 0.3f;
@@ -25,9 +26,20 @@ public class Portal : MonoBehaviour
 	//Portal Detection on Collision
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(Vector2.Distance(transform.position, other.transform.position) > 0.3f)
-		{
-			other.transform.position = new Vector2(destination.position.x, destination.position.y);
-		}
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
+        {
+            if (Vector2.Distance(transform.position, other.transform.position) > 0.3f)
+            {
+                other.transform.position = new Vector2(destination.position.x, destination.position.y);
+            }
+        }
+        else if (other.gameObject.tag == "Movable")
+        {
+            if (Vector2.Distance(transform.position, other.transform.position) > 0.1f)
+            {
+                other.transform.position = new Vector2(destination.position.x, destination.position.y);
+            }
+        }
+		
 	}
 }
